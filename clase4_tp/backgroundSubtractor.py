@@ -25,7 +25,6 @@ while (cap.isOpened):
 
         (contours, hierarchy) = cv2.findContours(fgmask.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 
-
         #looping for contours
         for c in contours:
             if cv2.contourArea(c) < 500:
