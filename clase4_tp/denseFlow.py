@@ -1,7 +1,9 @@
 import cv2 as cv
 import numpy as np
 
-cap = cv.VideoCapture("carsRt9_3.avi")
+# cap = cv.VideoCapture("carsRt9_3.avi")
+cap = cv.VideoCapture(0)
+
 ret, frame1 = cap.read()
 prvs = cv.cvtColor(frame1,cv.COLOR_BGR2GRAY)
 hsv = np.zeros_like(frame1)
