@@ -1,5 +1,6 @@
 # USAGE
 # python ocr_template_match.py --image images/credit_card_01.png --reference ocr_a_reference.png
+# python ocr_template_match.py --image recordImages/00000.png --reference ocr_a_reference.png
 
 # import the necessary packages
 from imutils import contours
@@ -175,4 +176,6 @@ for (i, (gX, gY, gW, gH)) in enumerate(locs):
 print("Credit Card Type: {}".format(FIRST_NUMBER[output[0]]))
 print("Credit Card #: {}".format("".join(output)))
 cv2.imshow("Image", image)
+cv2.imshow("GrayImage", gray)
+cv2.imshow("tophat", tophat)
 cv2.waitKey(0)
