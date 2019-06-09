@@ -62,10 +62,12 @@ sqKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
 image = cv2.imread(args["image"])
 image = imutils.resize(image, width=300)
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+cv2.imshow("Gray", gray)
 
 # apply a tophat (whitehat) morphological operator to find light
 # regions against a dark background (i.e., the credit card numbers)
 tophat = cv2.morphologyEx(gray, cv2.MORPH_TOPHAT, rectKernel)
+cv2.imshow("Tophat", tophat)
 
 # compute the Scharr gradient of the tophat image, then scale
 # the rest back into the range [0, 255]
@@ -128,7 +130,7 @@ for (i, (gX, gY, gW, gH)) in enumerate(locs):
 	group = gray[gY - 5:gY + gH + 5, gX - 5:gX + gW + 5]
 	group = cv2.threshold(group, 0, 255,
 		cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
-
+	cv2.imshow("Group " + str(i), group)
 	# detect the contours of each individual digit in the group,
 	# then sort the digit contours from left to right
 	digitCnts = cv2.findContours(group.copy(), cv2.RETR_EXTERNAL,
