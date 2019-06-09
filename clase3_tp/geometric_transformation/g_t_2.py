@@ -23,7 +23,7 @@ def draw_circle(event, x, y, flags, param):
             cv.circle(img, (x, y), 5, (0, 0, 255), -1)
             cv.circle(img2, (x, y), 5, (0, 0, 255), -1)
             distList.append((x, y))
-            print distList
+            print(distList)
             cv.imshow("image", img)
             cv.imshow("image2", img2)
             dist = np.float32(distList)  # convert to numpy for other usages
@@ -32,7 +32,8 @@ def draw_circle(event, x, y, flags, param):
             # second point = top-right
             # third point = bottom-left
             posNp = np.float32([[0, 0], [cols, 0], [0, rows]])  # points set to corners
-            new_matrix = cv.getAffineTransform(posNp, dist)
+            new_matrix = cv.getAffineTransform(dist, posNp)
+            # new_matrix = cv.getAffineTransform(posNp, dist)
             result1 = cv.warpAffine(img, new_matrix, (cols, rows))
             result2 = cv.warpAffine(img2, new_matrix, (cols, rows))
             cv.imshow("image", result1)
